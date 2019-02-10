@@ -42,3 +42,9 @@ def sample_n(mu,sigma):
     eps = tf.random_normal(shape=tf.shape(mu))
     z = mu+tf.matmul(eps,sigma)   
     return z
+
+def sample_n_e(mu,sigma):
+
+    eps = tf.random_normal(shape=tf.shape(mu))
+    z = mu+tf.einsum('kpv,pmv->kpm',eps,sigma)   
+    return z
